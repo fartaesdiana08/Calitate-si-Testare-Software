@@ -8,51 +8,43 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class TechProductFactory extends AbstractProductFactory{
+public class TechProductFactory extends AbstractProductFactory {
 
 	@Override
-	public Product makeProduct() throws UnsupportedOperationException {
-		return new TechProduct("generic");
+	public Product makeProduct(int id) throws UnsupportedOperationException {
+		return (Product) new TechProduct.TechProductBuilder(id);
 	}
 
 	@Override
 	public String getCatalog() {
-		ArrayList<String> records=readRecordsFromFile("tech_products.csv");
+		ArrayList<String>records=readRecordsFromFile("tech_products.csv");
 		StringBuilder builder=new StringBuilder();
-		for(String record:records) {
-			String[] productsAttributes = record.split(",");
-			builder.append(productsAttributes[0]+" - ");
-			builder.append(productsAttributes[1]+"  ")
-			.append(productsAttributes[2]+" ")
-			.append(productsAttributes[3]+"\n");
+		for(String record: records) {
+			String[] productAttributes=record.split(",");
+			builder.append(productAttributes[0]+" - ");
+			builder.append(productAttributes[1]+" ").append(productAttributes[2]+" ").append(productAttributes[3]+"\n");
 		}
 		return builder.toString();
 	}
 	
-	//pt a citi din fisier
 	private ArrayList<String> readRecordsFromFile(String fileName){
 		ArrayList<String> records=new ArrayList<String>();
-		
 		URL fileUrl=getClass().getResource(fileName);
 		File productsFile=new File(fileUrl.getPath());
 		try {
 			BufferedReader reader=new BufferedReader(new FileReader(productsFile));
 			String line;
-			try {
-				while((line=reader.readLine())!=null) {
-					records.add(line);
-				}
-				reader.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			while((line=reader.readLine())!=null) {
+				records.add(line);
 			}
+			reader.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
 		return records;
 	}
-
 }

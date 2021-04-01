@@ -12,15 +12,45 @@ public class TechProduct implements Product{
 	private TechProduct() {
 	}
 	
-	public TechProduct(String productName) {
+	private TechProduct(int id) {
 		super();
-		this.productName = productName;
+		this.id = id;
 	}
-
 
 	@Override
 	public String getDescription() {
 		return "this is a tech product";
 	}
 
+	public int getId() {
+		return id;
+	}
+
+	public String getProductName() {
+		return productName;
+	}
+
+	public String getManufacturer() {
+		return manufacturer;
+	}
+
+	public String getModel() {
+		return model;
+	}
+
+	public String getDisplayType() {
+		return displayType;
+	}
+
+	public float getPrice() {
+		return price;
+	}
+	
+	public static class TechProductBuilder{
+		private TechProduct product;
+		
+		public TechProductBuilder() {
+			product=new TechProduct();
+		}
+	}
 }

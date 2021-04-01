@@ -1,6 +1,6 @@
 package ro.ase.cts.seminar6.builder;
 
-public class TechProduct implements Product{
+public class TechProduct implements Product {
 	
 	int id;
 	String productName;
@@ -10,12 +10,14 @@ public class TechProduct implements Product{
 	float price;
 	
 	private TechProduct() {
+		
 	}
 	
 	private TechProduct(int id) {
 		super();
 		this.id = id;
 	}
+
 
 	@Override
 	public String getDescription() {
@@ -49,8 +51,38 @@ public class TechProduct implements Product{
 	public static class TechProductBuilder{
 		private TechProduct product;
 		
-		public TechProductBuilder() {
-			product=new TechProduct();
+		public TechProductBuilder(int id) {
+			product = new TechProduct();
+		}
+		
+		public TechProductBuilder setName(String name) {
+			product.productName = name;
+			return this;
+		}
+		
+		public TechProductBuilder setManufacturere(String manufacturer) {
+			product.manufacturer = manufacturer;
+			return this;
+		}
+		
+		public TechProductBuilder setModel(String model) {
+			product.model = model;
+			return this;
+		}
+		
+		public TechProductBuilder setDisplayType(String displayType) {
+			product.displayType = displayType;
+			return this;
+		}
+		
+		public TechProductBuilder setPrice(float price) {
+			product.price = price;
+			return this;
+		}
+		
+		public TechProduct getProduct() {
+			return product;
 		}
 	}
+
 }

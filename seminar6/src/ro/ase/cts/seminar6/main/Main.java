@@ -36,33 +36,28 @@ public class Main {
 //		}
 		
 		//ProductFactory productFactory = new ProductFactory();
-		AbstractProductFactory productFactory=null;
-		//ProductFactory productFactory=new ProductFactory();
-		if(userPreference!=null) {
-			if(userPreference.equalsIgnoreCase("tech")) {
-				productFactory=new TechProductFactory();
+		AbstractProductFactory productFactory = null;
+		if (userPreference != null) {
+			if (userPreference.equalsIgnoreCase("tech")) {
+				productFactory = new TechProductFactory();
 			}
 		}
-		
+
 		System.out.println(productFactory.getCatalog());
-		userPreference=scan.nextLine();
+		userPreference = scan.nextLine();
 		try {
-		int selectedId=Integer.valueOf(userPreference);
-		myProduct=productFactory.makeProduct(selectedId);
-		}catch(NumberFormatException e) {
-			System.err.println("Selectie invalida.");
+			int selectedId = Integer.valueOf(userPreference);
+			myProduct = productFactory.makeProduct(selectedId);
+		} catch (NumberFormatException e) {
+			System.err.println("Selectie invalida");
 		}
-		
-		
-		if(myProduct!=null) {
+
+		if (myProduct != null) {
 			myShoppingCart.products.add(myProduct);
 		}
-		for(Product p:myShoppingCart.products) {
+
+		for (Product p : myShoppingCart.products) {
 			System.out.println(p.getDescription());
 		}
-
-		
-		
 	}
-
 }

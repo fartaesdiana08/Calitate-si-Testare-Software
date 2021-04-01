@@ -1,14 +1,13 @@
-package ro.ase.acs.main;
+package ro.ase.cts.seminar6.main;
 
 import java.util.Scanner;
 
-import ro.ase.acs.seminar5.factory.AbstractProductFactory;
-import ro.ase.acs.seminar5.factory.OfficeProduct;
-import ro.ase.acs.seminar5.factory.Product;
-import ro.ase.acs.seminar5.factory.ProductFactory;
-import ro.ase.acs.seminar5.factory.TechProduct;
-import ro.ase.acs.seminar5.factory.TechProductFactory;
-import ro.ase.acs.seminar5.singleton.Cart;
+import ro.ase.cts.seminar6.builder.AbstractProductFactory;
+import ro.ase.cts.seminar6.builder.Product;
+import ro.ase.cts.seminar6.builder.TechProductFactory;
+import ro.asre.cts.seminar6.singleton.Cart;
+
+
 
 public class Main {
 
@@ -38,20 +37,21 @@ public class Main {
 		
 		//ProductFactory productFactory = new ProductFactory();
 		AbstractProductFactory productFactory=null;
+		//ProductFactory productFactory=new ProductFactory();
 		if(userPreference!=null) {
 			if(userPreference.equalsIgnoreCase("tech")) {
 				productFactory=new TechProductFactory();
-			};
+			}
 		}
-		myProduct = productFactory.makeProduct();
+		myProduct=productFactory.makeProduct();
 		
-		if(myProduct != null) {
+		if(myProduct!=null) {
 			myShoppingCart.products.add(myProduct);
 		}
-		
 		for(Product p:myShoppingCart.products) {
 			System.out.println(p.getDescription());
 		}
+
 		
 		
 	}
